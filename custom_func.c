@@ -76,7 +76,7 @@ void ostmr_1ms_IRQ(void)
 void ostimer_dealyms(unsigned long ms)
 {
     R_Config_OSTM0_Start();
-    ostmr_tick = 0;
+    ostmr_tick = 0U;
 
     while(ostmr_tick < ms);
 
@@ -107,7 +107,7 @@ void delay_ms(unsigned long ms)
 {
     unsigned long tickstart = get_tick();
     unsigned long wait = ms;
-	unsigned long tmp = 0;
+	unsigned long tmp = 0U;
 	
     while (1)
     {
@@ -157,13 +157,13 @@ void adc_read(unsigned char sel)
             R_Config_ADCA0_Halt();
 
             tiny_printf("adc buffer:");
-            for(i = 0; i < SIZEOF(g_adcbuf) ; i++)
+            for(i = 0U; i < SIZEOF(g_adcbuf) ; i++)
             {
                 tiny_printf("[%d]0x%04X,",i,g_adcbuf[i]);
             }
             tiny_printf("\r\n");     
                    
-            g_adcflag = 0;
+            g_adcflag = 0U;
             break;
 
         case 1: // after flag trig in adc interrupt
@@ -172,7 +172,7 @@ void adc_read(unsigned char sel)
             R_Config_ADCA0_Halt();
 
             tiny_printf("adc buffer:");
-            for(i = 0; i < SIZEOF(g_adcbuf) ; i++)
+            for(i = 0U; i < SIZEOF(g_adcbuf) ; i++)
             {
                 tiny_printf("[%d]0x%04X,",i,g_adcbuf[i]);
             }
@@ -243,12 +243,12 @@ void loop(void)
         adc_read_SELF_DIAG();
 
         #if 1
-        adc_read(0);
+        adc_read(0U);
         #else
         if (g_adcflag)
         {
-            adc_read(1);
-            g_adcflag = 0;
+            adc_read(1U);
+            g_adcflag = 0U;
         }
         #endif
     }
@@ -274,7 +274,7 @@ void UARTx_ErrorCheckProcess(unsigned char err)
                 tiny_printf("uart rx:Bit Error Flag\r\n");
                 break;
         }
-        g_uart0rxerr = 0;
+        g_uart0rxerr = 0U;
     }
 }
 

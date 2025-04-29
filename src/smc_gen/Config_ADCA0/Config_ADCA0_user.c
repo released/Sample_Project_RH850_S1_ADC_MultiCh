@@ -81,7 +81,7 @@ void r_Config_ADCA0_error_interrupt(void)
 void r_Config_ADCA0_scan_group1_end_interrupt(void)
 {
     /* Start user code for r_Config_ADCA0_scan_group1_end_interrupt. Do not edit comment generated here */
-    g_adcflag = 1;
+    g_adcflag = 1U;
     /* End user code. Do not edit comment generated here */
 }
 
@@ -95,7 +95,7 @@ void r_Config_ADCA0_scan_group1_end_interrupt(void)
 void r_Config_ADCA0_scan_group2_end_interrupt(void)
 {
     /* Start user code for r_Config_ADCA0_scan_group2_end_interrupt. Do not edit comment generated here */
-    g_adc2flag = 1;
+    g_adc2flag = 1U;
     /* End user code. Do not edit comment generated here */
 }
 
