@@ -192,7 +192,7 @@ void tmr_1ms_IRQ(void)
         FLAG_PROJ_TIMER_PERIOD_1000MS = 1U;
     }
 
-    if ((get_tick() % 25U) == 0U)
+    if ((get_tick() % 50U) == 0U)
     {
         FLAG_PROJ_TIMER_PERIOD_SPECIFIC = 1U;
     }
@@ -311,17 +311,30 @@ void UARTx_Process(unsigned char rxbuf)
 
             case 'X':
             case 'x':
-                // RL78_soft_reset(7);
-                break;
             case 'Z':
             case 'z':
-                // RL78_soft_reset(1);
+                RH850_software_reset();
                 break;
 
             default:       
                 // exception
                 break;                
         }
+    }
+}
+
+void RH850_software_reset(void)
+{
+    uint32_t  reg32_value;
+
+    reg32_value = 0x00000001UL;
+    WPROTR.PROTCMD0 = _WRITE_PROTECT_COMMAND;
+    RESCTL.SWRESA = reg32_value;
+    RESCTL.SWRESA = (uint32_t) ~reg32_value;
+    RESCTL.SWRESA = reg32_value;
+    while (WPROTR.PROTS0 != reg32_value)
+    {
+        NOP();
     }
 }
 

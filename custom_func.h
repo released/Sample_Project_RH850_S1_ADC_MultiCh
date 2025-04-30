@@ -77,4 +77,5 @@ void loop(void);
 
 void UARTx_ErrorCheckProcess(unsigned char err);
 void UARTx_Process(unsigned char rxbuf);
+void RH850_software_reset(void);
 void hardware_init(void);
