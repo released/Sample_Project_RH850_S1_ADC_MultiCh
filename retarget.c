@@ -18,7 +18,7 @@ int putchar(int c)
     //     SendChar('\n');
     // }
     SendChar((char)c);
-    return c;
+    return (char)c;
     #else
     DISABLE_UART_INT_STATUS_FLAG = 1U;    /* disable INTST0 interrupt */
     UART_XFER = (unsigned char)c;

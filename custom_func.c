@@ -31,7 +31,7 @@ volatile struct flag_32bit flag_PROJ_CTL;
 
 /*_____ D E F I N I T I O N S ______________________________________________*/
 
-volatile unsigned int counter_tick = 0U;
+volatile unsigned short counter_tick = 0U;
 volatile unsigned long ostmr_tick = 0U;
 
 #define BTN_PRESSED_LONG                                (2500U)
@@ -45,7 +45,6 @@ volatile unsigned char dummy_2 = 0xFFU;
 volatile unsigned char dummy_1;
 
 #pragma section default
-
 
 volatile unsigned long g_u32_counter = 0U;
 
@@ -84,12 +83,12 @@ void ostimer_dealyms(unsigned long ms)
 
 }
 
-unsigned int get_tick(void)
+unsigned short get_tick(void)
 {
 	return (counter_tick);
 }
 
-void set_tick(unsigned int t)
+void set_tick(unsigned short t)
 {
 	counter_tick = t;
 }
@@ -148,7 +147,7 @@ void adc_read(unsigned char sel)
 
     switch(sel)
     {
-        case 0: // wait for adc interrupt
+        case 0U: // wait for adc interrupt
             R_Config_ADCA0_ScanGroup1_Start();
             R_Config_ADCA0_ScanGroup1_OperationOn();
             while(!g_adcflag);
@@ -166,7 +165,7 @@ void adc_read(unsigned char sel)
             g_adcflag = 0U;
             break;
 
-        case 1: // after flag trig in adc interrupt
+        case 1U: // after flag trig in adc interrupt
             R_Config_ADCA0_ScanGroup1_GetResult(g_adcbuf,SIZEOF(g_adcbuf));
             R_Config_ADCA0_ScanGroup1_OperationOff();
             R_Config_ADCA0_Halt();
@@ -326,7 +325,7 @@ void UARTx_Process(unsigned char rxbuf)
     }
 }
 
-void RLIN3_UART_SendChar(int c)
+void RLIN3_UART_SendChar(unsigned char c)
 {
     /*
         UTS : 0 - transmission is not in progress    
@@ -336,7 +335,7 @@ void RLIN3_UART_SendChar(int c)
     // RLN30.LUTDR.UINT8[L] = (unsigned char) c;  
 }
 
-void SendChar(int ch)
+void SendChar(unsigned char ch)
 {
     RLIN3_UART_SendChar(ch);
 }

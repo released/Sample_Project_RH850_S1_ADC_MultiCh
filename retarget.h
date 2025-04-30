@@ -19,7 +19,7 @@
 
 /*_____ F U N C T I O N S __________________________________________________*/
 
-void SendChar(int ch);
+void SendChar(unsigned char ch);
 int putchar(int c);
 
 int fputc(int ch, FILE *f);
