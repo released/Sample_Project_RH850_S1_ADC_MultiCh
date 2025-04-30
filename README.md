@@ -3,7 +3,7 @@ Sample_Project_RH850_S1_ADC_MultiCh
 
 update @ 2025/04/29
 
-1. base on EVM : Y-ASK-RH850F1KM-S1-V3 , initial below function
+1. base on EVM : Y-BLDC-SK-RH850F1KM-S1-V2 , initial below function
 
 - TAUJ0_0 : timer interval for 1ms interrupt
 
